@@ -47,7 +47,7 @@ classdef DataX < handle
         iniVecResol {mustBeMember(iniVecResol,{'Hours','Halves','Quarters',...
             'Minutes','Seconds'})}= 'Hours'
         iniVecUnits {mustBeMember(iniVecUnits,{'MW','kW','m/s'})}= 'MW'
-        figControl = 0;
+        figControl = 1;
         
         % 		samples2Average;
     end % properties

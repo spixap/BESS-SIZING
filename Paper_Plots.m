@@ -23,7 +23,10 @@ title('Clustered picked scenarios for LOAD generation');
 hold off;
 %% PLOT HISTORICAL DATASETS
 % Run Equinor.m --> need DataTot.mat
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
 % Run 1st section of main.m
+
 
 % Data - RES
 figure;
