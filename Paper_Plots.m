@@ -1869,14 +1869,14 @@ for iFig = 1:length(FigList)
 
 %     print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf','-fillpage')
 
-%     print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf','-bestfit')
+    print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf','-bestfit')
 
 
 
-pos = get(gcf,'Position');
-set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','points')
-
-print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf')
+% pos = get(gcf,'Position');
+% set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','points')
+% 
+% print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf')
     
 
 end
