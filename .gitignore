@@ -1,0 +1,15 @@
+
+*.asv
+*.mat
+*.avi
+*.gif
+*.png
+*.jpg
+Results/
+OutputFiles/
+Figs_Out/
+DataFiles/
+BackUp/
+OutputFigures/
+@WindFarm/
+@CostsX/
