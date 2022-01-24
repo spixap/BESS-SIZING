@@ -23,9 +23,10 @@ title('Clustered picked scenarios for LOAD generation');
 hold off;
 %% PLOT HISTORICAL DATASETS
 % Run Equinor.m --> need DataTot.mat
-load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
-run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
 % Run 1st section of main.m
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
 
 
 % Data - RES
@@ -238,7 +239,10 @@ hold off;
 %}
 %% PLOT DENSITIES FIGURES
 % Run Equinor.m --> need DataTot.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
 % Run 1st section of main.m
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
 
 
 % # 1: RES cdf
@@ -1721,8 +1725,12 @@ legend(myFigs.dataVSgen.h,{'$ \left \{  \xi^{\ell} \right \}_N $','$\bf \tilde{\
     'Fontname','Times New Roman','interpreter','latex','NumColumns',2,'Location','northeast');
 %% PLOT 3D SAMPLING DENSITIES (FOR 2 DIMENSIONS)
 % ////// #3 - KDE LOAD
+
 % Run Equinor.m --> need DataTot.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
 % Run 1st section of main.m
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
 
 close all;
 
@@ -1843,5 +1851,33 @@ for iFig = 1:length(FigList)
     FigHandle = FigList(iFig);
     FigName   = get(FigHandle,'Name');
     print(FigHandle, fullfile(FolderName, [FigName '.png']), '-r300', '-dpng')
+end
+%}
+%% ----------------------\\\ SAVING FIGURE \\\-----------------------------
+%
+% mkdir FigOutTest
+FolderName = '\\home.ansatt.ntnu.no\spyridoc\Documents\EVENTS\JOURNAL_PAPERS\Paper_J1\Jrnl_Energy_Storage\Revision';   % Your destination folder
+FigList = findobj(allchild(0), 'flat', 'Type', 'figure');
+for iFig = 1:length(FigList)
+    FigHandle = FigList(iFig);
+    %       FigName   = num2str(get(FigHandle, 'Number'));
+    FigName   = get(FigHandle,'Name');
+    
+    % -----------------------TO PRINT THE FIGURE---------------------------
+    
+%     print(FigHandle, fullfile(FolderName, [FigName '.png']), '-r300', '-dpng')
+
+%     print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf','-fillpage')
+
+%     print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf','-bestfit')
+
+
+
+pos = get(gcf,'Position');
+set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','points')
+
+print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf')
+    
+
 end
 %}
