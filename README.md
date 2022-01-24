@@ -39,11 +39,7 @@ This repository contains the scripts :scroll: and data :open_file_folder: used f
     
  2. ### METHODS :crystal_ball: ###
    - `funScenGenQRF1.m` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; issue  K steps ahead scenarios forecasts at time _t_
-   - `funScenGenQRF.m` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; issue K steps ahead scenarios forecasts itteratively for _t>1_ (_used with_ `funAnimateQRF.m`)
-   - `funScenFrcstFig1step.m` &nbsp; plot K steps ahead scenario forecasts for selected time _t_
-   - `funProbFrcstFig1step.m` &nbsp; plot K steps ahead quantile forecasts for selected time _t_
-   - `funFrcstFig1step.m` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plot both scenario and quantile K steps ahead forecasts for selected time _t_
-   - `funAnimateQRF.m` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; produce forecasting animation (_.gif_) for itterative forecasts (_t>1_)              
+   - `funScenGenQRF.m` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; issue K steps ahead scenarios forecasts itteratively             
  
  ## MAIN RESULTS  :notebook_with_decorative_cover: ## 
 
@@ -51,10 +47,31 @@ This repository contains the scripts :scroll: and data :open_file_folder: used f
     * `Paper_Plots.m` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; generate _Figure 1_ and _Figures 3-8_ of the paper
 
      1. Plot generated scenarios 
-    
         `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat')`
         
-     2. bLA bLA `load('\DataTot.mat')`
+     2. Plot historical datasets
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat')`
+        `run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m')`
+        
+     3. Plot map figures
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat')``
+        
+     4. Plot densities figures
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat')`
+        `run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m')`
+        
+     5. Plot cost cdf comparison - beta=1 | alpha = 0.9 or 0.96
+        `load('.mat','')`
+        
+     6. Plot cost cdf comparison - alpha=0.8 | beta = 0 or 1
+        `load('.mat','')`
+        
+     7. Plot sensitivity result
+        `load('\SensitivityResult.mat')`
+        
+     8. seperate plots
+        as in 7 but figures are independened, not subfigures
+        
 
 
  <details>
