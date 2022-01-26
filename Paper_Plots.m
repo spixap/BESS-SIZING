@@ -752,6 +752,7 @@ ax1.XAxis.FontSize  = 16;
 ax1.XAxis.FontName = 'Times New Roman';
 ax1.XLim = [120,450];
 ax1.XLabel.FontSize = 20;
+ax1.Box = 'off';
 
 
 legend(ax1,{'$\mathrm{E} [\it F \rm (\bf x \, ; \, \Omega_s^*)]$','$E_{B}$'},'FontSize',16,'Box', 'off','color','none',...
@@ -876,6 +877,7 @@ ax1.FontName = 'Times New Roman';
 ax1.XLim = [120,450];
 ax1.XLabel.FontSize = 20;
 
+ax1.Box = 'off';
 
 legend(ax1,{'$\mathrm{E} [\it V_{CO_2} \rm (\bf x \rm \, ; \, \Omega_s^*)]$','$\mathrm{E} [\it E_{D} \rm (\bf x \rm \, ; \, \Omega_s^*)]$'},'FontSize',16,'Box', 'off','color','none',...
     'Fontname','Times New Roman','interpreter','latex','Location','northwest');
@@ -1131,24 +1133,28 @@ t.TileSpacing = 'compact';
 %}
 %% 3D -SEPARATE PLOTS
 % Load: Ref50Scens.mat + ReferenceCase.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceCase.mat');
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat');
 
 pltLoad  = DataX(LselScens);
 pltLoad.iniVec=pltLoad.GroupSamplesBy(24);
 resG     = DataX(ResselScens);
 resG.iniVec=resG.GroupSamplesBy(24);
-wi= 1;
+wi = 1;
 
 % ////// #1: RANKED LOAD CONTOUR
 figure;
-set(gcf,'Name','Ranked scenarios bars - LOAD','NumberTitle','off');
-% figBottomLeftX0 = 2;
-% figBottomLeftY0 = 2;
-% figWidth = 4.8; % 4.8
-% figHeight = 8.2;
-% set(gcf,'Name','Ranked scenarios bars - LOAD','NumberTitle','off', 'Units','inches',...
-% 'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
-% 'PaperPositionMode','auto');
+% set(gcf,'Name','Ranked scenarios bars - LOAD','NumberTitle','off');
+figBottomLeftX0 = 2;
+figBottomLeftY0 = 2;
+figWidth = 7; % 4.8
+figHeight = 5;
+set(gcf,'Name','Ranked scenarios bars - LOAD','NumberTitle','off', 'Units','inches',...
+'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+'PaperPositionMode','auto');
 
+% peakLoad = max(max(pltLoad.iniVec));
+peakLoad = max(LselScens);
 
 ax1 = gca;
 hold on;
@@ -1162,7 +1168,7 @@ c=colorbar;
 c.Label.Interpreter = 'latex';
 % c.Label.String = '$\it \bf \tilde{\xi}^{\ell}(\omega)$';
 c.Label.String = '$\it \bf \widehat{\xi}^{\ell}_t(\omega)$';
-c.Label.FontSize = 24;
+c.Label.FontSize = 20;
 c.Label.FontName = 'Times New Roman';
 for k = 1:length(b)
     zdata = b(k).ZData;
@@ -1177,23 +1183,27 @@ ax1.YLim = [0,51];
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$\it t \; [h]$';
 ax1.XLabel.Color = 'black';
-ax1.XAxis.FontSize  = 24;
+ax1.XAxis.FontSize  = 20;
 ax1.XAxis.FontName = 'Times New Roman';
 xticks(4:4:24);
 
 ax1.YLabel.Interpreter = 'latex';
 ax1.YLabel.String ='$\omega$';
 ax1.YLabel.Color = 'black';
-ax1.YAxis.FontSize  = 24;
+ax1.YAxis.FontSize  = 20;
 ax1.YAxis.FontName = 'Times New Roman';
 yticks(10:10:50);
 
-ax1.XGrid = 'on';
-ax1.YGrid = 'on';
+% ax1.XGrid = 'on';
+% ax1.YGrid = 'on';
 
 % ////// #2: RANKED RES CONTOUR
 figure;
-set(gcf,'Name','Ranked scenarios bars - RES','NumberTitle','off');
+% set(gcf,'Name','Ranked scenarios bars - RES','NumberTitle','off');
+set(gcf,'Name','Ranked scenarios bars - RES','NumberTitle','off', 'Units','inches',...
+'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+'PaperPositionMode','auto');
+
 ax2 = gca;
 hold on;
 for i = wi:size(resG.iniVec,2)
@@ -1204,7 +1214,7 @@ b = bar3(bwind');
 c=colorbar;
 c.Label.Interpreter = 'latex';
 c.Label.String = '$\it W(\bf \widehat{\xi}^w_t(\omega))$';
-c.Label.FontSize = 24;
+c.Label.FontSize = 20;
 c.Label.FontName = 'Times New Roman';
 for k = 1:length(b)
     zdata = b(k).ZData;
@@ -1219,19 +1229,19 @@ ax2.YLim = [0,51];
 ax2.XLabel.Interpreter = 'latex';
 ax2.XLabel.String ='$\it t\; [h]$';
 ax2.XLabel.Color = 'black';
-ax2.XAxis.FontSize  = 24;
+ax2.XAxis.FontSize  = 20;
 ax2.XAxis.FontName = 'Times New Roman';
 xticks(4:4:24);
 
 ax2.YLabel.Interpreter = 'latex';
 ax2.YLabel.String ='$\omega$';
 ax2.XLabel.Color = 'black';
-ax2.YAxis.FontSize  = 24;
+ax2.YAxis.FontSize  = 20;
 ax2.YAxis.FontName = 'Times New Roman';
 yticks(10:10:50);
 
-ax2.XGrid = 'on';
-ax2.YGrid = 'on';
+% ax2.XGrid = 'on';
+% ax2.YGrid = 'on';
 %% PLOT SCEDULE OF PARTICULAR SCENARIO FIGURE
 % Run 1st section of main.m
 % Load: Ref50Scens.mat + ReferenceCase.mat
@@ -1732,13 +1742,13 @@ hold off;
 %% PLOT OF DATASETS TOGETHER WITH SAMPLED PROFILES
 
 % Run Equinor.m --> need DataTot.mat
-% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
-% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
-% % % Run 1st section of main.m
-% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
-% % 
-% % % Load: Scns4Figs_02-Oct-2020-110735.mat
-% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\Scns4Figs_02-Oct-2020-110735.mat');
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
+% Run 1st section of main.m
+run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
+% 
+% Load: Scns4Figs_02-Oct-2020-110735.mat
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\Scns4Figs_02-Oct-2020-110735.mat');
 
 
 
@@ -1813,6 +1823,9 @@ myFigs.dataVSgen.ax1.XAxis.FontSize  = 20;
 myFigs.dataVSgen.ax1.XAxis.FontName = 'Times New Roman';
 myFigs.dataVSgen.ax1.XLim = [1,24];
 myFigs.dataVSgen.ax1.XTick = [4:4:24];
+
+myFigs.dataVSgen.ax1.Box = 'off';
+
 
 myFigs.dataVSgen.ax1.YLabel.Interpreter = 'latex';
 myFigs.dataVSgen.ax1.YLabel.String ='$\bf \xi^{\ell}\: \rm [pu]$';
