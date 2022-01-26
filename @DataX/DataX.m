@@ -47,7 +47,7 @@ classdef DataX < handle
         iniVecResol {mustBeMember(iniVecResol,{'Hours','Halves','Quarters',...
             'Minutes','Seconds'})}= 'Hours'
         iniVecUnits {mustBeMember(iniVecUnits,{'MW','kW','m/s'})}= 'MW'
-        figControl = 0;
+        figControl = 1;
         
         % 		samples2Average;
     end % properties
@@ -363,7 +363,7 @@ classdef DataX < handle
             
             %------- PLOT THE SELECTED AND REJECTED SCENRIOS --------------------------
 %             if objData.figControl == 1
-            %{
+            %
                 figure;
                 axScen=gca;
                 if UglyOrUsual == 0

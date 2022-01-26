@@ -97,6 +97,7 @@ mapFigures.dy = 0.003; % displacement so the text does not overlay the data poin
 figure;
 ax1=gca;
 set(gcf,'Name','Obtained Map Version 1','NumberTitle','off')
+
 mapFigures.clr = zeros(size(pltLoad.iniVec,2),3);
 for i=1:size(resG.iniVec,2)
     mapFigures.s1 = {'Region'};
@@ -113,14 +114,14 @@ plot(MapData.centroids(:,1),MapData.centroids(:,2),'d','MarkerEdgeColor','k','Ma
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$t_i(\tilde{\xi^{\ell}})$';
 ax1.XLabel.Color = 'black';
-ax1.XAxis.FontSize  = 24;
+ax1.XAxis.FontSize  = 20;
 ax1.XAxis.FontName = 'Times New Roman';
 ax1.XLim = [0,1];
 
 ax1.YLabel.Interpreter = 'latex';
 ax1.YLabel.String ='$t_i(\tilde{\xi^{w}})$';
 ax1.XLabel.Color = 'black';
-ax1.YAxis.FontSize  = 24;
+ax1.YAxis.FontSize  = 20;
 ax1.YAxis.FontName = 'Times New Roman';
 
 legend(mapFigures.lgd);
@@ -139,9 +140,20 @@ xlabel('Load Score');ylabel('Wind Power Score');
 legend(mapFigures.lgd);
 hold off
 
-figure;
+% figure;
+% ax1=gca;
+% set(gcf,'Name','Obtained Map Version 3','NumberTitle','off')
+
+figWidth = 7; figHeight = 5;
+figBottomLeftX0 = 2; figBottomLeftY0 = 2;
+
+figure('Name','Obtained Map Version 3','NumberTitle','off','Units','inches',...
+'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+'PaperPositionMode','auto');
+
 ax1=gca;
-set(gcf,'Name','Obtained Map Version 3','NumberTitle','off')
+
+
 for i=1:size(resG.iniVec,2)
     plot(MapData.points(MapData.clusterID==i,1),MapData.points(MapData.clusterID==i,2),'.','Color',mapFigures.clr(i,:),'MarkerSize',12)
     hold on
@@ -152,7 +164,7 @@ plot(MapData.centroids(:,1),MapData.centroids(:,2),'kx','MarkerSize',15,'LineWid
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$t_i(\tilde{\xi^{\ell}})$';
 ax1.XLabel.Color = 'black';
-ax1.XAxis.FontSize  = 24;
+ax1.XAxis.FontSize  = 20;
 ax1.XAxis.FontName = 'Times New Roman';
 ax1.XLim = [0,1];
 xticks(0:0.25:1);
@@ -160,7 +172,7 @@ xticks(0:0.25:1);
 ax1.YLabel.Interpreter = 'latex';
 ax1.YLabel.String ='$t_i(\tilde{\xi^{w}})$';
 ax1.XLabel.Color = 'black';
-ax1.YAxis.FontSize  = 24;
+ax1.YAxis.FontSize  = 20;
 ax1.YAxis.FontName = 'Times New Roman';
 yticks(0:0.25:1);
 
@@ -175,14 +187,14 @@ grid on;
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$\vert \Omega_s \vert$';
 ax1.XLabel.Color = 'black';
-ax1.XAxis.FontSize  = 24;
+ax1.XAxis.FontSize  = 20;
 ax1.XAxis.FontName = 'Times New Roman';
 ax1.XLim = [1,30];
 
 ax1.YLabel.Interpreter = 'latex';
 ax1.YLabel.String ='$J_I$';
 ax1.XLabel.Color = 'black';
-ax1.YAxis.FontSize  = 24;
+ax1.YAxis.FontSize  = 20;
 ax1.YAxis.FontName = 'Times New Roman';
 %% DENSITIES FIGURES - to check BW
 %{
@@ -1444,8 +1456,15 @@ alpha(barObj1,.3);
 legend(ax,{'P_{dump}^{BESS}','P_{dump}^{NO BESS}','P_{bat}','SoC'},'FontSize',12,'Fontname','Times New Roman','interpreter','tex','Location','northeast');
 %% PLOT SCENARIO SELECTION PROCESS
 % Run Equinor.m --> need DataTot.mat
-% Run 1st section of main.m
-% Load: Scns4Figs_02-Oct-2020-110735.mat, Ref50Scens.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
+% % Run 1st section of main.m
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
+% 
+% % Load: Scns4Figs_02-Oct-2020-110735.mat, Ref50Scens.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\Scns4Figs_02-Oct-2020-110735.mat');
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat');
+
 
 %{
 [scenGenSetLoad.iniVec,uniformRandVarU,EnSc,R24]   = LoadA.DoCopula(100,2);
@@ -1586,6 +1605,8 @@ axGen.YAxis.FontName = 'Times New Roman';
 axGen.YLim = [0 30];
 %% PLOT STABILITY RESULTS
 % Load: StabilityTest_10-Sep-2020-161628.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\StabilityTest\StabilityTest_10-Sep-2020-161628.mat');
+
 
 pickVar = 7;
 % ////// #1: BOXPLOTS
@@ -1625,13 +1646,13 @@ myFigs.boxPlt.ax1.YAxis.Label.Interpreter = 'latex';
 % ax1.YAxis.Label.String ='$\it F \rm (\bf x \, ; \, \bf \widehat{ \xi} \rm (\omega))$';
 myFigs.boxPlt.ax1.YAxis.Label.String ='$\it F \rm (\bf x \, ; \, \rm \Omega_s) $';
 myFigs.boxPlt.ax1.YAxis.Color = 'black';
-myFigs.boxPlt.ax1.YAxis.FontSize  = 24;
+myFigs.boxPlt.ax1.YAxis.FontSize  = 20;
 myFigs.boxPlt.ax1.YAxis.FontName = 'Times New Roman';
 
 myFigs.boxPlt.ax1.XLabel.Interpreter = 'latex';
 myFigs.boxPlt.ax1.XLabel.String ='$\vert \Omega_s \vert$';
 myFigs.boxPlt.ax1.XLabel.Color = 'black';
-myFigs.boxPlt.ax1.XAxis.FontSize  = 24;
+myFigs.boxPlt.ax1.XAxis.FontSize  = 20;
 myFigs.boxPlt.ax1.XAxis.FontName = 'Times New Roman';
 myFigs.boxPlt.ax1.TickLabelInterpreter  = 'latex';
 
@@ -1672,7 +1693,7 @@ myFigs.stabPlt.ax1.XLabel.Interpreter = 'latex';
 myFigs.stabPlt.ax1.TickLabelInterpreter  = 'latex';
 myFigs.stabPlt.ax1.XLabel.String = '$\vert \Omega_s \vert$';
 myFigs.stabPlt.ax1.XLabel.Color = 'black';
-myFigs.stabPlt.ax1.FontSize  = 24;
+myFigs.stabPlt.ax1.FontSize  = 20;
 myFigs.stabPlt.ax1.XLabel.FontName = 'Times New Roman';
 myFigs.stabPlt.ax1.FontName = 'Times New Roman';
 myFigs.stabPlt.ax1.XLabel.FontWeight = 'bold';
@@ -1680,19 +1701,21 @@ myFigs.stabPlt.ax1.XLim = [1,length(Solutions{1,2})];
 myFigs.stabPlt.ax1.XTick = (1:1:50);
 
 myFigs.stabPlt.ax1.YAxis(1).Label.Interpreter = 'latex';
-myFigs.stabPlt.ax1.YAxis(1).FontSize  = 24;
+myFigs.stabPlt.ax1.YAxis(1).FontSize  = 20;
 myFigs.stabPlt.ax1.YAxis(1).FontName = 'Times New Roman';
 myFigs.stabPlt.ax1.YAxis(1).Label.String = '$Rg$';
 myFigs.stabPlt.ax1.YAxis(1).Limits = [min(A,[],'all')-5000,max(A,[],'all')];
 
 
 myFigs.stabPlt.ax1.YAxis(2).Label.Interpreter = 'latex';
-myFigs.stabPlt.ax1.YAxis(2).FontSize  = 24;
+myFigs.stabPlt.ax1.YAxis(2).FontSize  = 20;
 myFigs.stabPlt.ax1.YAxis(2).FontName = 'Times New Roman';
 myFigs.stabPlt.ax1.YAxis(2).Limits = [min(A,[],'all')-5000,max(A,[],'all')];
 
-myFigs.stabPlt.ax1.XGrid = 'on';
-myFigs.stabPlt.ax1.YGrid = 'on';
+% myFigs.stabPlt.ax1.XGrid = 'on';
+% myFigs.stabPlt.ax1.YGrid = 'on';
+
+myFigs.stabPlt.ax1.Box = 'off';
 myFigs.stabPlt.ax1.YAxis(2).Color = 'k'; 
 % myFigs.stabPlt.ax1.YAxis(2).Label.String = '$Q^{25-75} \;/ \; \sigma$';
 myFigs.stabPlt.ax1.YAxis(2).Label.String = '$IQR \;/ \; s$';
@@ -1703,13 +1726,22 @@ myFigs.stabPlt.ax1.YAxis(2).Label.String = '$IQR \;/ \; s$';
 
 legend(myFigs.stabPlt.ax1,{'$Rg \left ( \left \{ \it F \rm (\bf x \, ; \rm \Omega_s)\right\}_M \right ) $',...
     '$IQR\left ( \left \{ \it F \rm (\bf x \, ; \rm \Omega_s)\right\}_M \right )$',...
-    '$s \left ( \left \{ \it F \rm (\bf x \, ; \rm \Omega_s)\right\}_M \right )$'},'FontSize',16,...
+    '$s \left ( \left \{ \it F \rm (\bf x \, ; \rm \Omega_s)\right\}_M \right )$'},'FontSize',16,'Box', 'off','color','none',......
     'Fontname','Times New Roman','interpreter','latex','Location','northeast');
 hold off;
 %% PLOT OF DATASETS TOGETHER WITH SAMPLED PROFILES
+
 % Run Equinor.m --> need DataTot.mat
-% Run 1st section of main.m
-% Load: Scns4Figs_02-Oct-2020-110735.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat');
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m'); % to execute the file
+% % % Run 1st section of main.m
+% run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\plt_init.m');
+% % 
+% % % Load: Scns4Figs_02-Oct-2020-110735.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\Scns4Figs_02-Oct-2020-110735.mat');
+
+
+
 
 % Data - RES
 % figure;
@@ -1773,11 +1805,11 @@ end
 p2=plot(scenGenSetLoad.iniVec./peakLoad,'-r','LineWidth',0.5);
 hold off;
 myFigs.dataVSgen.h=[p1(1);p2(1)];
-grid on;
+% grid on;
 myFigs.dataVSgen.ax1.XLabel.Interpreter = 'latex';
 myFigs.dataVSgen.ax1.XLabel.String ='$t\:[h]$';
 myFigs.dataVSgen.ax1.XLabel.Color = 'black';
-myFigs.dataVSgen.ax1.XAxis.FontSize  = 24;
+myFigs.dataVSgen.ax1.XAxis.FontSize  = 20;
 myFigs.dataVSgen.ax1.XAxis.FontName = 'Times New Roman';
 myFigs.dataVSgen.ax1.XLim = [1,24];
 myFigs.dataVSgen.ax1.XTick = [4:4:24];
@@ -1785,11 +1817,11 @@ myFigs.dataVSgen.ax1.XTick = [4:4:24];
 myFigs.dataVSgen.ax1.YLabel.Interpreter = 'latex';
 myFigs.dataVSgen.ax1.YLabel.String ='$\bf \xi^{\ell}\: \rm [pu]$';
 myFigs.dataVSgen.ax1.XLabel.Color = 'black';
-myFigs.dataVSgen.ax1.YAxis.FontSize  = 24;
+myFigs.dataVSgen.ax1.YAxis.FontSize  = 20;
 myFigs.dataVSgen.ax1.YAxis.FontName = 'Times New Roman';
 myFigs.dataVSgen.ax1.YTick = (0:0.25:1);
 
-legend(myFigs.dataVSgen.h,{'$ \left \{  \xi^{\ell} \right \}_N $','$\bf \tilde{\xi}^{\ell} \rm \; \in \; \Omega$'},'FontSize',16,...
+legend(myFigs.dataVSgen.h,{'$ \left \{  \xi^{\ell} \right \}_N $','$\bf \tilde{\xi}^{\ell} \rm \; \in \; \Omega$'},'FontSize',18,'Box', 'off','color','none',...
     'Fontname','Times New Roman','interpreter','latex','NumColumns',2,'Location','northeast');
 %% PLOT 3D SAMPLING DENSITIES (FOR 2 DIMENSIONS)
 % ////// #3 - KDE LOAD
@@ -1909,7 +1941,74 @@ scW = meshc(Xi, Yi, z);
 % scW.FaceAlpha = 'flat';
 set(gcf,'Name','Bivirate_RES_pdf','NumberTitle','off')
 
+%% Boxplots for methods comparison
 
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\StabilityTest\Stability_Compared.mat');
+
+
+pickVar = 7;
+
+myFigs.boxPltComp.figWidth = 7; myFigs.boxPltComp.figHeight = 5;
+myFigs.boxPltComp.figBottomLeftX0 = 2; myFigs.boxPltComp.figBottomLeftY0 =2;
+
+myFigs.boxPltComp.fig = figure('Name','Compare - Boxplots','NumberTitle','off','Units','inches',...
+'Position',[myFigs.boxPltComp.figBottomLeftX0 myFigs.boxPltComp.figBottomLeftY0 myFigs.boxPltComp.figWidth myFigs.boxPltComp.figHeight],...
+'PaperPositionMode','auto');
+
+% figure;
+% set(gcf,'Name','Stabiliy_Test_Comparison_Boxplots','NumberTitle','off')
+
+% xsolBox= [Solutions_fixed{pickVar,2},Solutions_perm{pickVar,2},...
+%     Solutions_red{pickVar,2},Solutions_clust{pickVar,2},Solutions_prop{pickVar,2}(:,10),Solutions_prop_rng{pickVar,2}];
+
+xsolBox= [Solutions_fixed{pickVar,2},Solutions_perm{pickVar,2},...
+    Solutions_red{pickVar,2},Solutions_clust{pickVar,2},Solutions_corr_028{pickVar,2},Solutions_prop{pickVar,2}(:,10)];
+
+% gtemp = {'Data';'Random';'FFS';...
+%     'H-cl';'Proposed';'Prop-rng'};
+
+gtemp = {'Data';'Random';'FFS';...
+    'H-cl';'SetCorr';'Proposed'};
+
+for i =1:6   
+    boxMedians(i) = median(xsolBox(:,i));
+    minmaxRange(i) = max(xsolBox(:,i))-min(xsolBox(:,i));
+    quantilesRange(i) = quantile(xsolBox(:,i),0.75)-quantile(xsolBox(:,i),0.25);
+    standatrdDeviations(i) = std(xsolBox(:,i));
+end
+ 
+% xsolTbl = table(boxMedians',minmaxRange',quantilesRange',standatrdDeviations',...
+%     'VariableNames',{'Median','Range','Quantiles','Std'},'RowNames',{'Data';'Random';'FFS';'H-cl';'Proposed';'Prop-rng'});
+xsolTbl = table(boxMedians',minmaxRange',quantilesRange',standatrdDeviations',...
+    'VariableNames',{'Median','Range','Quantiles','Std'},'RowNames',{'Data';'Random';'FFS';'H-cl';'SetCorr';'Proposed'});
+
+boxplot(xsolBox,gtemp,'Symbol','r')
+% ylabel(Solutions_prop{pickVar,1});
+myFigs.boxPltComp.ax1=gca;
+myFigs.boxPltComp.ax1.YAxis.Label.Interpreter = 'latex';
+myFigs.boxPltComp.ax1.YAxis.Label.String ='$\it F \rm (\bf x \, ; \, \rm \Omega_s) $';
+myFigs.boxPltComp.ax1.YAxis.Color = 'black';
+myFigs.boxPltComp.ax1.YAxis.FontSize  = 16;
+myFigs.boxPltComp.ax1.YAxis.FontName = 'Times New Roman';
+myFigs.boxPltComp.ax1.YAxis.Exponent = 0;
+myFigs.boxPltComp.ax1.YLim = [35000 95000];
+myFigs.boxPltComp.ax1.YAxis.Label.FontSize  = 20;
+
+
+myFigs.boxPltComp.ax1.YAxis.Label.FontName = 'Times New Roman';
+
+myFigs.boxPltComp.ax1.XLabel.Interpreter = 'latex';
+myFigs.boxPltComp.ax1.XLabel.String ='\it method';
+myFigs.boxPltComp.ax1.XLabel.Color = 'black';
+myFigs.boxPltComp.ax1.XAxis.FontSize  = 18;
+myFigs.boxPltComp.ax1.XTickLabelRotation = 30;
+
+myFigs.boxPltComp.ax1.XAxis.FontName = 'Times New Roman';
+myFigs.boxPltComp.ax1.XLabel.FontName = 'Times New Roman';
+myFigs.boxPltComp.ax1.TickLabelInterpreter  = 'latex';
+
+myFigs.boxPltComp.ax1.XGrid = 'on';
+myFigs.boxPltComp.ax1.YGrid = 'off';
 %% ----------------------\\\ SAVING FIGURE \\\-----------------------------
 %
 % mkdir OutputFigures
