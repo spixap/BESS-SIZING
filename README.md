@@ -54,23 +54,36 @@ This repository contains the scripts :scroll: and data :open_file_folder: used f
         `run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m')`
         
      3. Plot map figures
-        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat')``
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat')`
         
      4. Plot densities figures
         `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\DataTot.mat')`
         `run('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\EQUINOR\EquiData.m')`
         
      5. Plot cost cdf comparison - beta=1 | alpha = 0.9 or 0.96
-        `load('.mat','')`
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-      SIZING\DataFiles\RiskAnalysis\Risk_b1_a09.mat','riskPlot01','allScensResults01','LscensProbVec');
+         riskPlot01 = riskPlot;
+         allScensResults01 = allScensResults;
+         load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\RiskAnalysis\Risk_b1_a096.mat','riskPlot02','allScensResults02');
+         riskPlot02 = riskPlot;
+         allScensResults02 = allScensResults;`
         
      6. Plot cost cdf comparison - alpha=0.8 | beta = 0 or 1
-        `load('.mat','')`
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-   SIZING\DataFiles\RiskAnalysis\Risk_a08_b0_gap017.mat','riskPlot','allScensResults','LscensProbVec');
+        riskPlot01 = riskPlot;
+        allScensResults01 = allScensResults;
+        load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\RiskAnalysis\Risk_a08_b1_gap017.mat','riskPlot','allScensResults');
+        riskPlot02 = riskPlot;
+        allScensResults02 = allScensResults;`
         
      7. Plot sensitivity result
-        `load('\SensitivityResult.mat')`
+        `load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\SensitivityAnalysis\SensitivityResult.mat')`
         
      8. seperate plots
         as in 7 but figures are independened, not subfigures
+        
+     9. Plot scenario selection process
+        
         
 
 
