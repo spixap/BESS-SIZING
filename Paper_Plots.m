@@ -79,6 +79,7 @@ ax1.YAxis.FontName = 'Times New Roman';
 ax1.YTick = (0:0.25:1);
 %% PLOT MAP FIGURES
 % Load: Ref50Scens.mat
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\ReferenceScenarioSets\Ref50Scens.mat');
 
 % GROUP THE SELECTED SCENARIOS PROFILES
 pltLoad  = DataX(LselScens);
@@ -362,6 +363,12 @@ ax1.YAxis.FontName = 'Times New Roman';
 % Load: 
 % Risk_b1_a090.mat --> riskPlot01, allScensResults01 
 % Risk_b1_a096.mat --> riskPlot02, allScensResults02
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\RiskAnalysis\Risk_b1_a09.mat','riskPlot','allScensResults','LscensProbVec');
+riskPlot01 = riskPlot;
+allScensResults01 = allScensResults;
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\RiskAnalysis\Risk_b1_a096.mat','riskPlot','allScensResults');
+riskPlot02 = riskPlot;
+allScensResults02 = allScensResults;
 
 figure;
 % figBottomLeftX0 = 2;
@@ -438,19 +445,24 @@ hold off;
 % Load: 
 % Risk_a08_b0_gap017.mat --> riskPlot01, allScensResults01 
 % Risk_a08_b1_gap017.mat --> riskPlot02, allScensResults02
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\RiskAnalysis\Risk_a08_b0_gap017.mat','riskPlot','allScensResults','LscensProbVec');
+riskPlot01 = riskPlot;
+allScensResults01 = allScensResults;
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\RiskAnalysis\Risk_a08_b1_gap017.mat','riskPlot','allScensResults');
+riskPlot02 = riskPlot;
+allScensResults02 = allScensResults;
 
 figure;
-% figBottomLeftX0 = 2;
-% figBottomLeftY0 = 2;
-% figWidth = 7.16;
-% figHeight = 6.5;
-% set(gcf,'Name','Cost CDF','NumberTitle','off','Units','inches',...
-% 'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
-% 'PaperPositionMode','auto');
+figBottomLeftX0 = 2;
+figBottomLeftY0 = 2;
+figWidth = 7;
+figHeight = 6;
+set(gcf,'Name','Cost CDF','NumberTitle','off','Units','inches',...
+'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight]);
 
-set(gcf,'Name','Cost CDF','NumberTitle','off');
+% set(gcf,'Name','Cost CDF','NumberTitle','off');
 hold on;
-grid on;
+% grid on;
 done = 0;
 for i=1:length(riskPlot01.sortedCosts)
     
@@ -485,28 +497,39 @@ riskPlots.rplot(6)=scatter(allScensResults02.totalCost,0,150,'p','MarkerEdgeColo
 riskPlots.rplot(7)=scatter(allScensResults02.VaR,0,40,'o','MarkerEdgeColor','k','MarkerFaceColor','r','LineWidth',1.8,'DisplayName','VaR');
 riskPlots.rplot(8)=scatter(allScensResults02.CVaR,0,100,'s','MarkerEdgeColor','k','MarkerFaceColor','r','DisplayName','CVaR');
 
-grid on
+
 ax = gca;
+
+ax.XGrid = 'on';
+ax.YGrid = 'on';
 
 ax.XLabel.Interpreter = 'latex';
 ax.XLabel.String ='$\it F \rm (\bf x \, ; \, \rm \Omega_s^*)$';
 ax.XLabel.Color = 'black';
-ax.XLabel.FontSize  = 20;
 ax.XLabel.FontName = 'Times New Roman';
+ax.XAxis.FontSize  = 16;
+ax.XAxis.FontName = 'Times New Roman';
 ax.XColor = 'k';
 ax.XAxis.TickLabelFormat = '\x20AC%,.0f';
 ax.XAxis.Exponent = 0;
+ax.XTickLabelRotation = 30;
+ax.XLabel.FontSize  = 20;
+
+
 
 ax.YLabel.Interpreter = 'latex';
 ax.YLabel.String ='$cdf(\it F \rm (\bf x \, ; \, \rm \Omega_s^*)$';
 ax.YLabel.Color = 'black';
-ax.YLabel.FontSize  = 20;
 ax.YLabel.FontName = 'Times New Roman';
 ax.YColor = 'k';
+ax.YAxis.FontSize  = 16;
+ax.YAxis.FontName = 'Times New Roman';
+ax.YLabel.FontSize  = 20;
+
 
 legend([riskPlots.rplot(2) riskPlots.rplot(3) riskPlots.rplot(4) riskPlots.rplot(6)...
     riskPlots.rplot(7) riskPlots.rplot(8)],{'$E[\it F ]_{\beta = 0}$','$VaR_{\beta = 0}$','$CVaR_{\beta = 0}$',...
-'$E[\it F ]_{\beta = 1}$','$VaR_{\beta = 1}$','$CVaR_{\beta = 1}$',},'FontSize',14,...
+'$E[\it F ]_{\beta = 1}$','$VaR_{\beta = 1}$','$CVaR_{\beta = 1}$',},'FontSize',16,'Box', 'off','color','none',...
     'Fontname','Times New Roman','interpreter','latex','Location','northwest','NumColumns',2);
 hold off;
 %% COST CDF FIGURES (4 plots)
@@ -602,6 +625,7 @@ hold off;
 %}
 %% PLOT SENSITIVITY RESULT
 % Load: SensitivityResult.mat
+load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\SensitivityAnalysis\SensitivityResult.mat');
 
 figure;
 % figBottomLeftX0 = 2;
@@ -687,9 +711,21 @@ ax3.YGrid = 'on';
 t.TileSpacing = 'compact';
 
 %% Seperate plots
+% load('\\home.ansatt.ntnu.no\spyridoc\Documents\MATLAB\J1_PAPER_V02\BESS-SIZING\DataFiles\SensitivityAnalysis\SensitivityResult.mat');
+
 figure;
-set(gcf,'Name','sensAnalCost','NumberTitle','off',...
+figBottomLeftX0 = 2;
+figBottomLeftY0 = 2;
+figWidth = 7;
+figHeight = 5;
+
+set(gcf,'Name','sensAnalCost','NumberTitle','off', 'Units','inches',...
+'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
 'PaperPositionMode','auto');
+
+% figure;
+% set(gcf,'Name','sensAnalCost','NumberTitle','off',...
+% 'PaperPositionMode','auto');
 
 ax1 = gca;
 plot(Ce,Cost,'-bs','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor','b','LineWidth',1.5);
@@ -700,94 +736,119 @@ ax1.XLim = [120,450];
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$C_{B,E}$';
 ax1.XLabel.Color = 'black';
-ax1.FontSize  = 12;
-ax1.FontName = 'Times New Roman';
+ax1.XAxis.FontSize  = 16;
+ax1.XAxis.FontName = 'Times New Roman';
 ax1.XLim = [120,450];
+ax1.XLabel.FontSize = 20;
 
-legend(ax1,{'$\mathrm{E} [\it F \rm (\bf x \, ; \, \Omega_s^*)]$','$E_{B}$'},'FontSize',12,...
+
+legend(ax1,{'$\mathrm{E} [\it F \rm (\bf x \, ; \, \Omega_s^*)]$','$E_{B}$'},'FontSize',16,'Box', 'off','color','none',...
     'Fontname','Times New Roman','interpreter','latex','Location','south');
 
 ax1.YAxis(1).Label.Interpreter = 'latex';
 ax1.YAxis(1).Label.String ='$ \mathrm{E} [\it F \rm (\bf x \rm \, ; \, \Omega_s^*)]$';
 ax1.YAxis(1).Color = 'black';
-ax1.YAxis(1).FontSize  = 12;
+ax1.YAxis(1).FontSize  = 16;
 ax1.YAxis(1).FontName = 'Times New Roman';
 ax1.YAxis(1).Exponent = 0;
 ax1.YAxis(1).TickLabelFormat = '\x20AC%,.0f';
+ax1.YAxis(1).Label.FontSize  = 20;
+
 
 ax1.YAxis(2).Label.Interpreter = 'latex';
 ax1.YAxis(2).Label.String ='$E_{B}\;[MWh]$';
 ax1.YAxis(2).Color = 'black';
-ax1.YAxis(2).FontSize  = 12;
+ax1.YAxis(2).FontSize  = 16;
 ax1.YAxis(2).FontName = 'Times New Roman';
 ax1.YAxis(2).TickLabelFormat = '%.2f';
+ax1.YAxis(2).Label.FontSize  = 20;
 
-ax1.XLim = [120,450];
-ax1.XLabel.Interpreter = 'latex';
-ax1.XLabel.String ='$C_{B,E}$';
-ax1.XLabel.Color = 'black';
-ax1.FontSize  = 14;
-ax1.FontName = 'Times New Roman';
-ax1.XLim = [120,450];
 
-ax1.XGrid = 'on';
-ax1.YGrid = 'on';
+% ax1.XLim = [120,450];
+% ax1.XLabel.Interpreter = 'latex';
+% ax1.XLabel.String ='$C_{B,E}$';
+% ax1.XLabel.Color = 'black';
+% ax1.FontSize  = 14;
+% ax1.FontName = 'Times New Roman';
+% ax1.XLim = [120,450];
+% ax1.XLabel.FontSize = 16;
+
+% ax1.XGrid = 'on';
+% ax1.YGrid = 'on';
+
+
+
+% figure;
+% set(gcf,'Name','sensAnalCO2','NumberTitle','off', 'Units','inches',...
+% 'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+% 'PaperPositionMode','auto');
+% 
+% % set(gcf,'Name','sensAnalCO2','NumberTitle','off',...
+% % 'PaperPositionMode','auto');
+% 
+% 
+% ax1 = gca;
+% plot(Ce,CO2,'-ks','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',1.5);
+% 
+% ax1.YAxis.Label.Interpreter = 'latex';
+% ax1.YAxis.Label.String ='$ \mathrm{E} [\it V_{CO_2} \rm (\bf x \rm \, ; \, \Omega_s^*)] \rm \it [tn]$';
+% ax1.YAxis.Color = 'black';
+% ax1.YAxis.FontSize  = 20;
+% ax1.YAxis.FontName = 'Times New Roman';
+% ax1.YAxis.Exponent = 0;
+% ax1.YAxis.TickLabelFormat = '%.0f';
+% % ax2.YAxis.TickLabelFormat = '%g tn';
+% 
+% ax1.XLim = [120,450];
+% ax1.XLabel.Interpreter = 'latex';
+% ax1.XLabel.String ='$C_{B,E}$';
+% ax1.XLabel.Color = 'black';
+% ax1.FontSize  = 20;
+% ax1.FontName = 'Times New Roman';
+% ax1.XLim = [120,450];
+% 
+% % ax1.XGrid = 'on';
+% % ax1.YGrid = 'on';
+% 
+% figure;
+% 
+% set(gcf,'Name','sensAnalD','NumberTitle','off', 'Units','inches',...
+% 'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+% 'PaperPositionMode','auto');
+% 
+% % set(gcf,'Name','sensAnalD','NumberTitle','off',...
+% % 'PaperPositionMode','auto');
+% ax1 = gca;
+% plot(Ce,dump,'-ks','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',1.5);
+% 
+% ax1.YAxis.Label.Interpreter = 'latex';
+% ax1.YAxis.Label.String ='$ \mathrm{E} [\it E_{D} \rm (\bf x \rm \, ; \, \Omega_s^*)]  \rm \it [MWh]$';
+% ax1.YAxis.Color = 'black';
+% ax1.YAxis.FontSize  = 20;
+% ax1.YAxis.FontName = 'Times New Roman';
+% ax1.YAxis.Exponent = 0;
+% ax1.YAxis.TickLabelFormat = '%.1f';
+% % ax3.YAxis.TickLabelFormat = '%g MWh';
+% 
+% ax1.XLim = [120,450];
+% ax1.XLabel.Interpreter = 'latex';
+% ax1.XLabel.String ='$C_{B,E}$';
+% ax1.XLabel.Color = 'black';
+% ax1.FontSize  = 20;
+% ax1.FontName = 'Times New Roman';
+% ax1.XLim = [120,450];
+% 
+% % ax1.XGrid = 'on';
+% % ax1.YGrid = 'on';
 
 figure;
-set(gcf,'Name','sensAnalCO2','NumberTitle','off',...
+
+set(gcf,'Name','sensAnalCO2D','NumberTitle','off', 'Units','inches',...
+'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
 'PaperPositionMode','auto');
-ax1 = gca;
-plot(Ce,CO2,'-ks','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',1.5);
 
-ax1.YAxis.Label.Interpreter = 'latex';
-ax1.YAxis.Label.String ='$ \mathrm{E} [\it V_{CO_2} \rm (\bf x \rm \, ; \, \Omega_s^*)] \rm \it [tn]$';
-ax1.YAxis.Color = 'black';
-ax1.YAxis.FontSize  = 20;
-ax1.YAxis.FontName = 'Times New Roman';
-ax1.YAxis.Exponent = 0;
-ax1.YAxis.TickLabelFormat = '%.0f';
-% ax2.YAxis.TickLabelFormat = '%g tn';
-
-ax1.XLim = [120,450];
-ax1.XLabel.Interpreter = 'latex';
-ax1.XLabel.String ='$C_{B,E}$';
-ax1.XLabel.Color = 'black';
-ax1.FontSize  = 20;
-ax1.FontName = 'Times New Roman';
-ax1.XLim = [120,450];
-
-ax1.XGrid = 'on';
-ax1.YGrid = 'on';
-
-figure;
-set(gcf,'Name','sensAnalD','NumberTitle','off',...
-'PaperPositionMode','auto');
-ax1 = gca;
-plot(Ce,dump,'-ks','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',1.5);
-
-ax1.YAxis.Label.Interpreter = 'latex';
-ax1.YAxis.Label.String ='$ \mathrm{E} [\it E_{D} \rm (\bf x \rm \, ; \, \Omega_s^*)]  \rm \it [MWh]$';
-ax1.YAxis.Color = 'black';
-ax1.YAxis.FontSize  = 20;
-ax1.YAxis.FontName = 'Times New Roman';
-ax1.YAxis.Exponent = 0;
-ax1.YAxis.TickLabelFormat = '%.1f';
-% ax3.YAxis.TickLabelFormat = '%g MWh';
-
-ax1.XLim = [120,450];
-ax1.XLabel.Interpreter = 'latex';
-ax1.XLabel.String ='$C_{B,E}$';
-ax1.XLabel.Color = 'black';
-ax1.FontSize  = 20;
-ax1.FontName = 'Times New Roman';
-ax1.XLim = [120,450];
-
-ax1.XGrid = 'on';
-ax1.YGrid = 'on';
-
-figure;
-set(gcf,'Name','sensAnalCO2D','NumberTitle','off',...
-'PaperPositionMode','auto');
+% set(gcf,'Name','sensAnalCO2D','NumberTitle','off',...
+% 'PaperPositionMode','auto');
 
 ax1 = gca;
 plot(Ce,CO2,'-bs','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor','b','LineWidth',1.5);
@@ -798,39 +859,46 @@ ax1.XLim = [120,450];
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$C_{B,E}$';
 ax1.XLabel.Color = 'black';
-ax1.FontSize  = 12;
+ax1.FontSize  = 16;
 ax1.FontName = 'Times New Roman';
 ax1.XLim = [120,450];
+ax1.XLabel.FontSize = 20;
 
-legend(ax1,{'$\mathrm{E} [\it V_{CO_2} \rm (\bf x \rm \, ; \, \Omega_s^*)]$','$\mathrm{E} [\it E_{D} \rm (\bf x \rm \, ; \, \Omega_s^*)]$'},'FontSize',12,...
+
+legend(ax1,{'$\mathrm{E} [\it V_{CO_2} \rm (\bf x \rm \, ; \, \Omega_s^*)]$','$\mathrm{E} [\it E_{D} \rm (\bf x \rm \, ; \, \Omega_s^*)]$'},'FontSize',16,'Box', 'off','color','none',...
     'Fontname','Times New Roman','interpreter','latex','Location','northwest');
 
 ax1.YAxis(1).Label.Interpreter = 'latex';
 ax1.YAxis(1).Label.String ='$ \mathrm{E} [\it V_{CO_2} \rm (\bf x \rm \, ; \, \Omega_s^*)] \rm \it [tn]$';
 ax1.YAxis(1).Color = 'black';
-ax1.YAxis(1).FontSize  = 12;
+ax1.YAxis(1).FontSize  = 16;
 ax1.YAxis(1).FontName = 'Times New Roman';
 ax1.YAxis(1).Exponent = 0;
 ax1.YAxis(1).TickLabelFormat = '%.1f';
 ax1.YAxis(1).TickValues  = (238:0.5:241);
+ax1.YAxis(1).Label.FontSize  = 20;
+
 
 ax1.YAxis(2).Label.Interpreter = 'latex';
 ax1.YAxis(2).Label.String ='$\mathrm{E} [\it E_{D} \rm (\bf x \rm \, ; \, \Omega_s^*)]  \rm \it [MWh]$';
 ax1.YAxis(2).Color = 'black';
-ax1.YAxis(2).FontSize  = 12;
+ax1.YAxis(2).FontSize  = 16;
 ax1.YAxis(2).FontName = 'Times New Roman';
 ax1.YAxis(2).TickLabelFormat = '%.1f';
+ax1.YAxis(2).Label.FontSize  = 20;
 
-ax1.XLim = [120,450];
-ax1.XLabel.Interpreter = 'latex';
-ax1.XLabel.String ='$C_{B,E}$';
-ax1.XLabel.Color = 'black';
-ax1.FontSize  = 14;
-ax1.FontName = 'Times New Roman';
-ax1.XLim = [120,450];
 
-ax1.XGrid = 'on';
-ax1.YGrid = 'on';
+% ax1.XLim = [120,450];
+% ax1.XLabel.Interpreter = 'latex';
+% ax1.XLabel.String ='$C_{B,E}$';
+% ax1.XLabel.Color = 'black';
+% ax1.FontSize  = 16;
+% ax1.FontName = 'Times New Roman';
+% ax1.XLabel.FontSize = 16;
+
+
+% ax1.XGrid = 'on';
+% ax1.YGrid = 'on';
 %% 3D plots to identify the scenarios with high cost
 % Load:: Ref50Scens.mat + ReferenceCase.mat
 %{
@@ -1856,7 +1924,7 @@ end
 %% ----------------------\\\ SAVING FIGURE \\\-----------------------------
 %
 % mkdir FigOutTest
-FolderName = '\\home.ansatt.ntnu.no\spyridoc\Documents\EVENTS\JOURNAL_PAPERS\Paper_J1\Jrnl_Energy_Storage\Revision';   % Your destination folder
+FolderName = '\\home.ansatt.ntnu.no\spyridoc\Documents\EVENTS\JOURNAL_PAPERS\Paper_J1\Jrnl_Energy_Storage\Revision\Figures';   % Your destination folder
 FigList = findobj(allchild(0), 'flat', 'Type', 'figure');
 for iFig = 1:length(FigList)
     FigHandle = FigList(iFig);
@@ -1874,7 +1942,7 @@ for iFig = 1:length(FigList)
 
 
 pos = get(gcf,'Position');
-set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','points')
+set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','inches')
 set(gcf,'renderer','painters');
 
 % 
