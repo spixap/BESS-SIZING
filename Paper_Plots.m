@@ -2036,7 +2036,9 @@ end
 %% ----------------------\\\ SAVING FIGURE \\\-----------------------------
 %
 % mkdir FigOutTest
-FolderName = '\\home.ansatt.ntnu.no\spyridoc\Documents\EVENTS\JOURNAL_PAPERS\Paper_J1\Jrnl_Energy_Storage\Revision\Figures';   % Your destination folder
+% FolderName = '\\home.ansatt.ntnu.no\spyridoc\Documents\EVENTS\JOURNAL_PAPERS\Paper_J1\Jrnl_Energy_Storage\Revision\Figures';   % Your destination folder
+FolderName = '\\home.ansatt.ntnu.no\spyridoc\Documents\EVENTS\ARCHIVED\COLLOQUIUA\C3_04_02_22\Figs';   % Your destination folder
+
 FigList = findobj(allchild(0), 'flat', 'Type', 'figure');
 for iFig = 1:length(FigList)
     FigHandle = FigList(iFig);
@@ -2045,7 +2047,7 @@ for iFig = 1:length(FigList)
     
     % -----------------------TO PRINT THE FIGURE---------------------------
     
-%     print(FigHandle, fullfile(FolderName, [FigName '.png']), '-r300', '-dpng')
+    print(FigHandle, fullfile(FolderName, [FigName '.png']), '-r300', '-dpng')
 
 %     print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf','-fillpage')
 
@@ -2053,12 +2055,10 @@ for iFig = 1:length(FigList)
 
 
 
-pos = get(gcf,'Position');
-set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','inches')
-set(gcf,'renderer','painters');
-
-% 
-print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf')
+% pos = get(gcf,'Position');
+% set(gcf,'PaperSize',[pos(3) pos(4)],'PaperUnits','inches')
+% set(gcf,'renderer','painters');
+% print(FigHandle, fullfile(FolderName, [FigName '.pdf']),'-dpdf')
     
 
 end
