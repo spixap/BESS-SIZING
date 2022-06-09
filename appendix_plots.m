@@ -31,7 +31,7 @@ hold off;
 figWidth = 6; figHeight = 5;
 figBottomLeftX0 = 2; figBottomLeftY0 =2;
 fontSize = 20;
-fig01Name = 'res_sampling_iii'; % data_res, res_sampling_i, res_sampling_ii, res_sampling_iii_50, res_sampling_iii_10, res_sampling_iii_10_red, res_sampling_iii
+fig01Name = 'res_sampling_ii'; % data_res, res_sampling_i, res_sampling_ii, res_sampling_iii_50, res_sampling_iii_10, res_sampling_iii_10_red, res_sampling_iii
 fig02Name = 'load_sampling_iii'; % data_load, load_sampling_i, load_sampling_ii, load_sampling_iii_50, load_sampling_iii_10, load_sampling_iii_10_red, load_sampling_iii
 
 % Data - RES
@@ -68,15 +68,15 @@ ax1=gca;
 
 for iScen = 1:size(wind.iniVec,2)
     
-%     if iScen == rnd_idx_1
-%         plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
-%     elseif iScen == rnd_idx_2
-%         plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
-%     elseif iScen == rnd_idx_3
-%         plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
-%     else
-%         plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
-%     end
+    if iScen == rnd_idx_1
+        plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
+    elseif iScen == rnd_idx_2
+        plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
+    elseif iScen == rnd_idx_3
+        plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+    else
+        plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+    end
 %     
 
 
@@ -90,19 +90,19 @@ for iScen = 1:size(wind.iniVec,2)
 %     end
     
 
-    if ismember(iScen,z3)
-        if iScen == rnd_idx_iii_1
-            plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
-        elseif iScen == rnd_idx_iii_2
-            plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
-        elseif iScen == rnd_idx_iii_3
-            plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
-        else
-            plot(wind.iniVec(:,iScen),'Color' ,'#737373','LineWidth',1);
-        end
-    else
-        plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
-    end
+%     if ismember(iScen,z3)
+%         if iScen == rnd_idx_iii_1
+%             plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_2
+%             plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_3
+%             plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%         else
+%             plot(wind.iniVec(:,iScen),'Color' ,'#737373','LineWidth',1);
+%         end
+%     else
+%         plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+%     end
     
     hold on;
 end
@@ -145,15 +145,15 @@ for iScen = 1:size(LoadA.iniVec,2)
 %         plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',0.1);
 %     end
 
-%     if iScen == rnd_idx_1
-%         plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
-%     elseif iScen == rnd_idx_2
-%         plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
-%     elseif iScen == rnd_idx_3
-%         plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
-%     else
-%         plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',0.1);
-%     end
+    if iScen == rnd_idx_1
+        plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
+    elseif iScen == rnd_idx_2
+        plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+    elseif iScen == rnd_idx_3
+        plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
+    else
+        plot(1:24,LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',0.1);
+    end
     
 
 
@@ -168,19 +168,19 @@ for iScen = 1:size(LoadA.iniVec,2)
     
     
     
-    if ismember(iScen,z3)
-        if iScen == rnd_idx_iii_2
-            plot(LoadA.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
-        elseif iScen == rnd_idx_iii_3
-            plot(LoadA.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
-        elseif iScen == rnd_idx_iii_1
-            plot(LoadA.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
-        else
-            plot(LoadA.iniVec(:,iScen),'Color' ,'#737373','LineWidth',1);
-        end
-    else
-        plot(LoadA.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
-    end
+%     if ismember(iScen,z3)
+%         if iScen == rnd_idx_iii_2
+%             plot(LoadA.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_3
+%             plot(LoadA.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_1
+%             plot(LoadA.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%         else
+%             plot(LoadA.iniVec(:,iScen),'Color' ,'#737373','LineWidth',1);
+%         end
+%     else
+%         plot(LoadA.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+%     end
     
     hold on;
 end
