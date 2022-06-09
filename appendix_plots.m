@@ -754,13 +754,19 @@ yticks(10:10:50);
 peakLoad = max(LoadA.UnGroupSamples);
 
 % ////// #1 FAST FORWARD SELECTION
+% LOAD
+% 100 scenarios
 [LredScens,~,z3]=scenGenSetLoad.ReduceScenariosBy(0,3);
 [LredScens,~,z3]=scenGenSetLoad.ReduceScenariosBy(1,95);
-
-[LredScens,~,z3]=LoadA.ReduceScenariosBy(0,3);
+% all data
+[LredScens,~,z3]=LoadA.ReduceScenariosBy(0,50);
 [LredScens,~,z3]=LoadA.ReduceScenariosBy(1,365-3);
 
-[LredScens,~,z3]=wind.ReduceScenariosBy(0,1);
+% WIND
+% 100 scenarios
+
+% all data
+% [LredScens,~,z3]=wind.ReduceScenariosBy(0,1);
 
 
 
