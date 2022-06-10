@@ -34,12 +34,12 @@ fontSize = 20;
 
 % data_res, res_sampling_i, res_sampling_ii, res_sampling_iii_50,
 % res_sampling_iii_10, res_sampling_iii_10_red, res_sampling_iii,
-% res_sampling_iii_50_rgb
-fig01Name = 'res_sampling_iii_50_rgb';
+% res_sampling_iii_50_rgb, res_sampling_iv_clusters, res_sampling_iv_rgb
+fig01Name = 'res_sampling_iv_rgb';
 % data_load, load_sampling_i, load_sampling_ii, load_sampling_iii_50,
 % load_sampling_iii_10, load_sampling_iii_10_red, load_sampling_iii,
-% load_sampling_iii_50_rgb
-fig02Name = 'load_sampling_iii_50_rgb';
+% load_sampling_iii_50_rgb, load_sampling_iv_clusters, load_sampling_iv_rgb
+fig02Name = 'load_sampling_iv_rgb';
 
 % Data - RES
 figure('Name',fig01Name,'NumberTitle','off','Units','inches',...
@@ -59,15 +59,24 @@ figure('Name',fig01Name,'NumberTitle','off','Units','inches',...
 % rnd_idx_2 = 187;
 % rnd_idx_3 = 310;
 
-
+% Best indices set for visualization
 rnd_idx_1 = 28;
 rnd_idx_2 = 187;
 rnd_idx_3 = 340;
+% 
+% rnd_idx_iii_1 = z3(1);
+% rnd_idx_iii_2 = z3(25);
+% rnd_idx_iii_3 = z3(50);
 
-rnd_idx_iii_1 = z3(1);
-rnd_idx_iii_2 = z3(25);
-rnd_idx_iii_3 = z3(50);
+rnd_idx_iv_1 = 1;
+rnd_idx_iv_2 = 25;
+rnd_idx_iv_3 = 50;
 
+peakLoad = max(LoadA.UnGroupSamples);
+% data2plot = wind;   % for wind data
+data2plot = DataX();  % for wind trasnforemd to wind power data
+data2plot.iniVec = ResGen.iniVec/40; %  per untit
+% data2plot.iniVec = LoadA.iniVec/peakLoad; %  per untit
 
 
 ax1=gca;
@@ -76,59 +85,83 @@ ax1=gca;
 for iScen = 1:size(wind.iniVec,2)
       % SAMPLING METHOD I
 %     if iScen == rnd_idx_1
-%         plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
 %     elseif iScen == rnd_idx_2
-%         plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
 %     elseif iScen == rnd_idx_3
-%         plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
 %     else
-%         plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
 %     end
-% %     
 
       % ALL DATA
-%     plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+%     plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
     
      % SHOW HOW FFS CAN SELECT BEST (color 'b') / WORST (color 'r') SCENARIOS
 %     if ismember(iScen,z3)
-%         plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
 %     else
-%         plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
 %     end
 %     
 
       % SAMPLING METHOD III
 %     if ismember(iScen,z3)
 %         if iScen == rnd_idx_iii_1
-%             plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
 %         elseif iScen == rnd_idx_iii_2
-%             plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
 %         elseif iScen == rnd_idx_iii_3
-%             plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
 %         else
-%             plot(wind.iniVec(:,iScen),'Color' ,'#737373','LineWidth',1);
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'#737373','LineWidth',1);
 %         end
 %     else
-%         plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
 %     end
 
 
     % SAMPLING METHOD III (only preserved scenarios)
-    if ismember(iScen,z3)
-        if iScen == rnd_idx_iii_1
-            plot(wind.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
-        elseif iScen == rnd_idx_iii_2
-            plot(wind.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
-        elseif iScen == rnd_idx_iii_3
-            plot(wind.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
-        else
-            plot(wind.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',1);
-        end
-    end
-%     
+%     if ismember(iScen,z3)
+%         if iScen == rnd_idx_iii_1
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_2
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'g','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_3
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%         else
+%             plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',1);
+%         end
+%     end
+
+    
+      % PLOT CLUSTERS IN THE DATASET
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
+
     
     hold on;
+    
 end
+% SAMPLING-IV -CLUSTERING
+for iScen = 1 : InScenNum
+%     plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+    
+%     SAMPLING METHOD IV (only preserved scenarios)
+        if iScen == rnd_idx_iv_1
+            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'r','LineWidth',3);
+        elseif iScen == rnd_idx_iv_2
+            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'g','LineWidth',3);
+        elseif iScen == rnd_idx_iv_3
+            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'b','LineWidth',3);
+        else
+            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'#bdbdbd','LineWidth',1);
+        end
+        hold on;
+end
+
+
+
+
 % grid on;
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$t\:[h]$';
@@ -139,10 +172,12 @@ ax1.XLim = [1,24];
 xticks(4:4:24);
 
 ax1.YLabel.Interpreter = 'latex';
-ax1.YLabel.String ='$\xi^{w}\:[\frac{m}{s}]$';
+% ax1.YLabel.String ='$\xi^{w}\:[\frac{m}{s}]$'; % for wind speed
+ax1.YLabel.String ='$\xi^{w}\:[pu]$';
 ax1.XLabel.Color = 'black';
 ax1.YAxis.FontSize  = fontSize;
 ax1.YAxis.FontName = 'Times New Roman';
+ax1.YTick = (0:0.25:1);
 
 ax1.Box = 'off';
 
@@ -153,7 +188,7 @@ figure('Name',fig02Name,'NumberTitle','off','Units','inches',...
     'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
     'PaperPositionMode','auto');
 
-peakLoad = max(LoadA.UnGroupSamples);
+
 ax1=gca;
 
 for iScen = 1:size(LoadA.iniVec,2)
@@ -186,7 +221,7 @@ for iScen = 1:size(LoadA.iniVec,2)
 
       % SHOW HOW FFS CAN SELECT BEST (color 'b') / WORST (color 'r') SCENARIOS
 %     if ismember(iScen,z3)
-%         plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+%         plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
 %     else
 %         plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',0.1);
 %     end
@@ -208,21 +243,39 @@ for iScen = 1:size(LoadA.iniVec,2)
 %     end
 
     % SAMPLING METHOD III (only preserved scenarios)
-    if ismember(iScen,z3)
-        if iScen == rnd_idx_iii_2
-            plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
-        elseif iScen == rnd_idx_iii_3
-            plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
-        elseif iScen == rnd_idx_iii_1
-            plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
-        else
-            plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',1);
-        end
-    end
-    
+%     if ismember(iScen,z3)
+%         if iScen == rnd_idx_iii_2
+%             plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_3
+%             plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
+%         elseif iScen == rnd_idx_iii_1
+%             plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+%         else
+%             plot(LoadA.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',1);
+%         end
+%     end
+%     
     hold on;
 end
 % grid on;
+
+% SAMPLING-IV -CLUSTERING
+for iScen = 1 : InScenNum
+%     plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+    
+%     SAMPLING METHOD IV (only preserved scenarios)
+        if iScen == rnd_idx_iv_2
+            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
+        elseif iScen == rnd_idx_iv_3
+            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
+        elseif iScen == rnd_idx_iv_1
+            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+        else
+            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',1);
+        end
+        hold on;
+end
+
 ax1.XLabel.Interpreter = 'latex';
 ax1.XLabel.String ='$t\:[h]$';
 ax1.XLabel.Color = 'black';
@@ -236,8 +289,8 @@ ax1.YLabel.String ='$\xi^{\ell}\:[pu]$';
 ax1.XLabel.Color = 'black';
 ax1.YAxis.FontSize  = fontSize;
 ax1.YAxis.FontName = 'Times New Roman';
-% ax1.YTick = (0:0.25:1);
-ax1.YTick = (0.3:0.1:0.6);
+ax1.YTick = (0:0.25:1);
+% ax1.YTick = (0.3:0.1:0.6);
 
 
 ax1.Box = 'off';
@@ -393,15 +446,18 @@ peakLoad = max(LoadA.UnGroupSamples);
 [LredScens,~,z3]=scenGenSetLoad.ReduceScenariosBy(0,3);
 [LredScens,~,z3]=scenGenSetLoad.ReduceScenariosBy(1,95);
 % all data
-[LredScens,~,z3]=LoadA.ReduceScenariosBy(0,50);
+[LredScens,~,z3]=LoadA.ReduceScenariosBy(0,10);
 [LredScens,~,z3]=LoadA.ReduceScenariosBy(1,365-10);
 
 % WIND
 % 100 scenarios
 
 % all data
-[LredScens,~,z3]=wind.ReduceScenariosBy(0,50);
+[LredScens,~,z3]=wind.ReduceScenariosBy(0,10);
 [LredScens,~,z3]=wind.ReduceScenariosBy(1,365-10);
+
+[LredScens,~,z3]=ResGen.ReduceScenariosBy(0,50);
+[LredScens,~,z3]=ResGen.ReduceScenariosBy(1,365-10);
 
 
 

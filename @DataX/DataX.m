@@ -525,7 +525,7 @@ classdef DataX < handle
                 tplot=(1:size(XclusterData,2))';
                 clr=zeros(cluster_number,3);
                 for i=1:cluster_number
-                    s1 = {'Region'};
+                    s1 = {'c '};
                     s2 = {num2str(i)};
                     lgd(i)=strcat(s1,s2);
                     clr=jet(cluster_number);
@@ -598,26 +598,65 @@ classdef DataX < handle
                     T = cluster(Z,'maxclust',cluster_number);
                     
                     cutoff = median([Z(end-cluster_number+1,3) Z(end-cluster_number+2,3)]);
-                    %{
-                    if objData.figControl == 1
-                        figure;
-                        dendrogram(Z,'ColorThreshold',cutoff)
+                    %
                     
-                        figure;
+                    peakVal = 77.4225; % load 77.4225 wind power 40
+
+                    % FIGURES
+
+                    figWidth = 6; figHeight = 5;
+                    figBottomLeftX0 = 2; figBottomLeftY0 =2;
+                    fontSize = 20;
+                    
+                    if objData.figControl == 1
+                        figure('Name','dendrogram','NumberTitle','off','Units','inches',...
+                                'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+                                'PaperPositionMode','auto');
+                            
+                        d = dendrogram(Z,30,'ColorThreshold',cutoff);
+                        set(d,'LineWidth',1.5);
+                        ax = gca;
+%                         ax.YAxis.Visible = 'off';
+                        ax.Visible = 'off';
+                        
+                    
+                        figure('Name','all_clusters','NumberTitle','off','Units','inches',...
+                            'Position',[figBottomLeftX0 figBottomLeftY0 7 figHeight],...
+                            'PaperPositionMode','auto');
+                        
+                        ax1=gca;
+                        
                         for i=1:cluster_number
-                            ph{i} = plot(tplot,XclusterData(T==i,:),'.-','Color',clr(i,:),'MarkerSize',12);
+%                             ph{i} = plot(tplot,XclusterData(T==i,:)/peakVal,'.-','Color',clr(i,:),'MarkerSize',12);
+                            ph{i} = plot(tplot,XclusterData(T==i,:)/peakVal,'-','Color',clr(i,:),'LineWidth',1);
+
                             hold on
                         end
                         
+                        ax1.XLabel.Interpreter = 'latex';
+                        ax1.XLabel.String ='$t\:[h]$';
+                        ax1.XLabel.Color = 'black';
+                        ax1.XAxis.FontSize  = fontSize;
+                        ax1.XAxis.FontName = 'Times New Roman';
+                        ax1.XLim = [1 size(XclusterData,2)];
+                        xticks(4:4:24);
                         
-                        title('Hierarchical Clustering visualization');
-                        xlabel('time [h]');ylabel('Load');
-                        xlim([1 size(XclusterData,2)]);
-                        grid on;
+                        ax1.YLabel.Interpreter = 'latex';
+                        % ax1.YLabel.String ='$\xi^{w}\:[\frac{m}{s}]$'; % for wind speed
+                        ax1.YLabel.String ='$\xi^{\ell}\:[pu]$';
+                        ax1.XLabel.Color = 'black';
+                        ax1.YAxis.FontSize  = fontSize;
+                        ax1.YAxis.FontName = 'Times New Roman';
+                        ax1.YTick = (0:0.25:1);
+                        ax1.Box = 'off';
+                       
+                        
                         for j=1:cluster_number
                             lgd1(1,j) = ph{1,j}(1,:);
                         end
-                        legend(lgd1,lgd);
+                        
+                        legend(lgd1,lgd,'FontSize',12,'Location','bestoutside');
+                        legend boxoff;
                         hold off
                     end
                     %}
@@ -625,17 +664,43 @@ classdef DataX < handle
                     centroidScenarios = zeros(size(XclusterData,2),cluster_number);
                     %Plot Individual clusters
 %                     if objData.figControl == 1
+
                         for i=1:cluster_number
-%                             figure;
-%                             plot(tplot,XclusterData(T==i,:),'.-','Color',clr(i,:),'MarkerSize',12);
+                            figure('Name',['cluster_',num2str(i)],'NumberTitle','off','Units','inches',...
+                                'Position',[figBottomLeftX0 figBottomLeftY0 figWidth figHeight],...
+                                'PaperPositionMode','auto');
+                            
+                            ax1=gca;
+
+                            
+%                             plot(tplot,XclusterData(T==i,:)/peakVal,'.-','Color',clr(i,:),'MarkerSize',12);
+                            plot(tplot,XclusterData(T==i,:)/peakVal,'-','Color',clr(i,:),'LineWidth',1);
+
                             centroidProb(i) = size(XclusterData(T==i,:),1)/size(XclusterData,1);
                             centroidScenarios(:,i) = mean(XclusterData(T==i,:),1);
                             
-%                             xlabel('time [h]');ylabel('Load');
-%                             legend(lgd(i));
-%                             title(['Clusted group of load curves ' num2str(i)]);
-%                             xlim([1 size(XclusterData,2)]);
-%                             grid on;
+                            
+                            
+                            ax1.XLabel.Interpreter = 'latex';
+                            ax1.XLabel.String ='$t\:[h]$';
+                            ax1.XLabel.Color = 'black';
+                            ax1.XAxis.FontSize  = fontSize;
+                            ax1.XAxis.FontName = 'Times New Roman';
+                            ax1.XLim = [1 size(XclusterData,2)];
+                            xticks(4:4:24);
+
+                            ax1.YLabel.Interpreter = 'latex';
+                            % ax1.YLabel.String ='$\xi^{w}\:[\frac{m}{s}]$'; % for wind speed
+                            ax1.YLabel.String ='$\xi^{w}\:[pu]$';
+                            ax1.XLabel.Color = 'black';
+                            ax1.YAxis.FontSize  = fontSize;
+                            ax1.YAxis.FontName = 'Times New Roman';
+                            ax1.YTick = (0:0.1:1);
+
+                            ax1.Box = 'off';
+                            
+                            legend(lgd(i),'FontSize',12);
+                            legend boxoff;
                         end
 %                     end
                     clusterdData = T;
