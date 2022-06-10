@@ -19,6 +19,12 @@ WF1   = WindFarm();                     % Define a WIND FARM
 LoadA.iniVec    = LoadA.GroupSamplesBy(24);
 scenGenSetLoad  = DataX();
 
+WF1.WindValue = wind.iniVec;
+WF1.DoWindPower;
+
+ResGen = DataX(WF1.WindPower);
+ResGen.iniVec=ResGen.GroupSamplesBy(24);
+
 %----------------- USE IF I HAVE DIRECTLY WIND POWER DATA -----------------
 %{
 % WF1.WindValue = wind.iniVec;
@@ -31,4 +37,6 @@ scenGenSetLoad  = DataX();
 
 scenGenSetWind  = DataX();
 wind.iniVec     = wind.GroupSamplesBy(24);
+
+
 %}
