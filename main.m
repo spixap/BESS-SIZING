@@ -144,7 +144,7 @@ ResselScens = scenGenSetResGen.UnGroupSamples;
 LscensProbVec = LscensProbVec./sum(LscensProbVec);
 %}
 %% ---------- Uncomment if i want to perform self-clustering --------------
-%
+%{
 [clusterdLoad,centroidScensL,centroidProbsL]    = LoadA.SelfClusterData(InScenNum,2);
 [clusterdRes,centroidScensRes,centroidProbsRes] = ResGen.SelfClusterData(InScenNum,2);
 

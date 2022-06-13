@@ -34,12 +34,14 @@ fontSize = 20;
 
 % data_res, res_sampling_i, res_sampling_ii, res_sampling_iii_50,
 % res_sampling_iii_10, res_sampling_iii_10_red, res_sampling_iii,
-% res_sampling_iii_50_rgb, res_sampling_iv_clusters, res_sampling_iv_rgb
-fig01Name = 'res_sampling_iv_rgb';
+% res_sampling_iii_50_rgb, res_sampling_iv_clusters, res_sampling_iv_rgb,
+% res_sampling_v
+fig01Name = 'res_sampling_v_2';
 % data_load, load_sampling_i, load_sampling_ii, load_sampling_iii_50,
 % load_sampling_iii_10, load_sampling_iii_10_red, load_sampling_iii,
 % load_sampling_iii_50_rgb, load_sampling_iv_clusters, load_sampling_iv_rgb
-fig02Name = 'load_sampling_iv_rgb';
+% load_sampling_v
+fig02Name = 'load_sampling_v_2';
 
 % Data - RES
 figure('Name',fig01Name,'NumberTitle','off','Units','inches',...
@@ -99,7 +101,7 @@ for iScen = 1:size(wind.iniVec,2)
     
      % SHOW HOW FFS CAN SELECT BEST (color 'b') / WORST (color 'r') SCENARIOS
 %     if ismember(iScen,z3)
-%         plot(data2plot.iniVec(:,iScen),'Color' ,'b','LineWidth',3);
+%         plot(data2plot.iniVec(:,iScen),'Color' ,'r','LineWidth',3);
 %     else
 %         plot(data2plot.iniVec(:,iScen),'Color' ,'#bdbdbd','LineWidth',0.1);
 %     end
@@ -142,19 +144,36 @@ for iScen = 1:size(wind.iniVec,2)
     hold on;
     
 end
-% SAMPLING-IV -CLUSTERING
+% SAMPLING-IV - CLUSTERING
+% for iScen = 1 : InScenNum
+% %     plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+%     
+% %     SAMPLING METHOD IV (only preserved scenarios)
+%         if iScen == rnd_idx_iv_1
+%             plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'r','LineWidth',3);
+%         elseif iScen == rnd_idx_iv_2
+%             plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'g','LineWidth',3);
+%         elseif iScen == rnd_idx_iv_3
+%             plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'b','LineWidth',3);
+%         else
+%             plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'#bdbdbd','LineWidth',1);
+%         end
+%         hold on;
+% end
+
+% SAMPLING-V - correlation
 for iScen = 1 : InScenNum
 %     plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
     
-%     SAMPLING METHOD IV (only preserved scenarios)
-        if iScen == rnd_idx_iv_1
-            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'r','LineWidth',3);
-        elseif iScen == rnd_idx_iv_2
-            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'g','LineWidth',3);
-        elseif iScen == rnd_idx_iv_3
-            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'b','LineWidth',3);
+%     SAMPLING METHOD V (only preserved scenarios)
+        if iScen == 1
+            plot(tempResGenX.iniVec(:,iScen)/40,'Color' ,'r','LineWidth',3);
+        elseif iScen == 2
+            plot(tempResGenX.iniVec(:,iScen)/40,'Color' ,'g','LineWidth',3);
+        elseif iScen == 3
+            plot(tempResGenX.iniVec(:,iScen)/40,'Color' ,'b','LineWidth',3);
         else
-            plot(centroidScensResX.iniVec(:,iScen)/40,'Color' ,'#bdbdbd','LineWidth',1);
+            plot(tempResGenX.iniVec(:,iScen)/40,'Color' ,'#bdbdbd','LineWidth',1);
         end
         hold on;
 end
@@ -259,19 +278,36 @@ for iScen = 1:size(LoadA.iniVec,2)
 end
 % grid on;
 
-% SAMPLING-IV -CLUSTERING
+% SAMPLING-IV - CLUSTERING
+% for iScen = 1 : InScenNum
+% %     plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+%     
+% %     SAMPLING METHOD IV (only preserved scenarios)
+%         if iScen == rnd_idx_iv_2
+%             plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
+%         elseif iScen == rnd_idx_iv_3
+%             plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
+%         elseif iScen == rnd_idx_iv_1
+%             plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+%         else
+%             plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',1);
+%         end
+%         hold on;
+% end
+
+% SAMPLING-V - correlation
 for iScen = 1 : InScenNum
 %     plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
     
-%     SAMPLING METHOD IV (only preserved scenarios)
-        if iScen == rnd_idx_iv_2
-            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
-        elseif iScen == rnd_idx_iv_3
-            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
-        elseif iScen == rnd_idx_iv_1
-            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
+%     SAMPLING METHOD V (only preserved scenarios)
+        if iScen == 1
+            plot(tempLoadX.iniVec(:,iScen)/peakLoad,'Color' ,'r','LineWidth',3);
+        elseif iScen == 2
+            plot(tempLoadX.iniVec(:,iScen)/peakLoad,'Color' ,'g','LineWidth',3);
+        elseif iScen == 3
+            plot(tempLoadX.iniVec(:,iScen)/peakLoad,'Color' ,'b','LineWidth',3);
         else
-            plot(centroidScensLX.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',1);
+            plot(tempLoadX.iniVec(:,iScen)/peakLoad,'Color' ,'#bdbdbd','LineWidth',1);
         end
         hold on;
 end
