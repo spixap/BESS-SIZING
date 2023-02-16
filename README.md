@@ -1,5 +1,5 @@
 # BESS-SIZING
-This repository contains the scripts :scroll: and data :open_file_folder: used for the [paper](https://www.sciencedirect.com/science/article/pii/S2352152X2200336X/ "Named link title"). :page_facing_up:.
+This repository contains the scripts used for the [paper](https://www.sciencedirect.com/science/article/pii/S2352152X2200336X/ "Named link title"). :page_facing_up:.
  
  - README under construction :wrench: :heavy_exclamation_mark:
  
